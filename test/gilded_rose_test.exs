@@ -1,8 +1,10 @@
 defmodule GildedRoseTest do
   use ExUnit.Case
-  doctest GildedRose
 
-  test "greets the world" do
-    assert GildedRose.hello() == :world
+  test "begin the journey of refactoring" do
+    items = [%Item{name: "foo", sell_in: 0, quality: 0}]
+    GildedRose.update_quality(items)
+    %{name: firstItemName} = List.first(items)
+    assert "fixme" == firstItemName
   end
 end
