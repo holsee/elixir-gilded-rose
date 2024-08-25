@@ -38,12 +38,17 @@ defmodule GildedRoseTest do
     end
   end
 
-  describe "Sulfuras" do
+  describe "Sulfuras, Hand of Ragnaros" do
     test "never decreases in quality" do
-      items = [%Item{name: "Sulfuras, Hand of Ragnaros", sell_in: 0, quality: 80}]
+      items = [%Item{name: "Sulfuras, Hand of Ragnaros", sell_in: 10, quality: 80}]
       [updated_item] = GildedRose.update_quality(items)
-      assert updated_item.sell_in == 0
       assert updated_item.quality == 80
+    end
+
+    test "never has to be sold, so never change the sellin days" do
+      items = [%Item{name: "Sulfuras, Hand of Ragnaros", sell_in: 10, quality: 80}]
+      [updated_item] = GildedRose.update_quality(items)
+      assert updated_item.sell_in == 10
     end
   end
 
@@ -83,6 +88,7 @@ defmodule GildedRoseTest do
         %Item{name: "Normal Item", sell_in: 5, quality: 10},
         %Item{name: "Aged Brie", sell_in: 3, quality: 10}
       ]
+
       updated_items = GildedRose.update_quality(items)
       assert length(updated_items) == 2
       assert Enum.at(updated_items, 0).quality == 9
