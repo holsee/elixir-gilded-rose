@@ -5,6 +5,6 @@ defmodule GildedRoseTest do
     items = [%Item{name: "foo", sell_in: 0, quality: 0}]
     GildedRose.update_quality(items)
     %{name: firstItemName} = List.first(items)
-    assert "fixme" == firstItemName
+    assert "foo" == firstItemName
   end
 end
