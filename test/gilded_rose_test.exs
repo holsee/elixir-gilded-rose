@@ -95,4 +95,16 @@ defmodule GildedRoseTest do
       assert Enum.at(updated_items, 1).quality == 11
     end
   end
+
+  describe "Conjured Items" do
+    test "degarde in quality twice as fast" do
+      items = [
+        %Item{name: "Spellbook", sell_in: 10, quality: 10}
+      ]
+
+      updated_items = GildedRose.update_quality(items)
+      assert length(updated_items) == 1
+      assert Enum.at(updated_items, 0).quality == 8
+    end
+  end
 end
